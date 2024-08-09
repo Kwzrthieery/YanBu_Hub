@@ -45,24 +45,30 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            margin-bottom: 20px;
         }
 
         .sidebar-header h2 {
             margin: 0;
             font-size: 24px;
             color: var(--primary);
-            display: inline-block;
-            transition: opacity 0.3s;
+            transition: opacity 0.3s, margin-left 0.3s;
         }
 
         .sidebar-header h2.collapsed {
             opacity: 0;
+            margin-left: -9999px; /* Hide text when collapsed */
         }
 
         .sidebar-header .toggle-btn {
             font-size: 24px;
             cursor: pointer;
             color: var(--light);
+            transition: transform 0.3s;
+        }
+
+        .sidebar-header .toggle-btn.collapsed {
+            transform: rotate(180deg); /* Rotate icon when collapsed */
         }
 
         .sidebar-menu {
@@ -72,7 +78,7 @@
         }
 
         .sidebar-menu li {
-            margin: 20px 0;
+            margin: 15px 0;
         }
 
         .sidebar-menu li a {
@@ -87,7 +93,7 @@
         }
 
         .sidebar-menu li a .icon {
-            margin-right: 10px;
+            margin-right: 15px;
         }
 
         .sidebar-menu li a:hover {
@@ -315,183 +321,32 @@
     <div class="sidebar">
         <div class="sidebar-header">
             <h2 class="title">Admin Dashboard</h2>
-            <span class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
+            <span class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-chevron-left"></i></span>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#upload-courses"><i class="fas fa-upload icon"></i><span class="menu-text">Upload Courses</span></a></li>
-            <li><a href="#registered-learners"><i class="fas fa-users icon"></i><span class="menu-text">Registered Learners</span></a></li>
-            <li><a href="#post-feed"><i class="fas fa-pen icon"></i><span class="menu-text">Post Feed</span></a></li>
-            <li><a href="#view-messages"><i class="fas fa-comments icon"></i><span class="menu-text">View Messages</span></a></li>
-            <li><a href="#start-sessions"><i class="fas fa-video icon"></i><span class="menu-text">Start Sessions</span></a></li>
-            <li><a href="#logout"><i class="fas fa-sign-out-alt icon"></i><span class="menu-text">Logout</span></a></li>
+            <li><a href="#"><i class="fas fa-home icon"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-users icon"></i> Users</a></li>
+            <li><a href="#"><i class="fas fa-cogs icon"></i> Settings</a></li>
         </ul>
     </div>
     <div class="content">
-        <section id="upload-courses">
-            <h2>Upload Courses</h2>
+        <section>
+            <h2>Dashboard</h2>
             <div class="card">
-                <h3>Existing Courses</h3>
-                <div class="card">
-                    <h3>Course Title 1</h3>
-                    <p>Description of course 1</p>
-                </div>
-                <div class="card">
-                    <h3>Course Title 2</h3>
-                    <p>Description of course 2</p>
-                </div>
-            </div>
-            <form>
-                <h3>Add New Course</h3>
-                <input type="text" placeholder="Course Title">
-                <input type="file">
-                <button type="submit">Upload</button>
-            </form>
-        </section>
-        <section id="registered-learners">
-            <h2>Registered Learners</h2>
-            <p>Total Registered Users: <span id="user-count">100</span></p>
-            <table class="users-table">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Email</th>
-                        <th>Registration Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>John Doe</td>
-                        <td>john.doe@example.com</td>
-                        <td>2024-08-01</td>
-                    </tr>
-                    <tr>
-                        <td>Jane Smith</td>
-                        <td>jane.smith@example.com</td>
-                        <td>2024-08-02</td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
-        <section id="post-feed">
-            <h2>Post Feed</h2>
-            <form>
-                <textarea placeholder="What's on your mind?"></textarea>
-                <button type="submit">Post</button>
-            </form>
-        </section>
-        <section id="view-messages">
-            <h2>View Messages</h2>
-            <div class="chat-container">
-                <div class="chat-list">
-                    <ul>
-                        <li data-chat="user1">User 1</li>
-                        <li data-chat="user2">User 2</li>
-                    </ul>
-                </div>
-                <div class="chat-details">
-                    <div class="chat-header">
-                        <span id="chat-user-name">Select a user to start chat</span>
-                    </div>
-                    <div class="chat-body" id="chat-body">
-                        <!-- Chat messages will be displayed here -->
-                    </div>
-                    <div class="chat-footer">
-                        <input type="text" id="message-input" placeholder="Type a message">
-                        <button id="send-message">Send</button>
-                    </div>
-                </div>
+                <h3>Card Title</h3>
+                <p>Card Content</p>
             </div>
         </section>
-        <section id="start-sessions">
-            <h2>Start Sessions</h2>
-            <!-- Session Management Tools -->
-        </section>
-        <section id="logout">
-            <h2>Logout</h2>
-            <!-- Logout functionality -->
-        </section>
+        <!-- Other sections -->
     </div>
+
     <script>
         function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            const content = document.querySelector('.content');
-            sidebar.classList.toggle('collapsed');
-            content.classList.toggle('collapsed');
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.content').classList.toggle('collapsed');
+            document.querySelector('.sidebar-header .title').classList.toggle('collapsed');
+            document.querySelector('.sidebar-header .toggle-btn').classList.toggle('collapsed');
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const sidebarLinks = document.querySelectorAll('.sidebar-menu li a');
-            const sections = document.querySelectorAll('section');
-            const chatListItems = document.querySelectorAll('.chat-list li');
-            const chatUserName = document.getElementById('chat-user-name');
-            const chatBody = document.getElementById('chat-body');
-            const messageInput = document.getElementById('message-input');
-            const sendMessageButton = document.getElementById('send-message');
-
-            const showSection = (hash) => {
-                sections.forEach(section => {
-                    section.style.display = section.id === hash ? 'block' : 'none';
-                });
-            };
-
-            showSection('upload-courses'); // Show default section on page load
-
-            sidebarLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const hash = e.target.getAttribute('href').substring(1);
-                    showSection(hash);
-                    history.pushState(null, null, `#${hash}`);
-                });
-            });
-
-            document.querySelectorAll('form').forEach(form => {
-                form.addEventListener('submit', (e) => {
-                    e.preventDefault();
-                    const formData = new FormData(form);
-                    console.log('Form submitted', formData);
-
-                    const message = document.createElement('div');
-                    message.className = 'success-message';
-                    message.innerText = 'Form submitted successfully!';
-                    document.body.appendChild(message);
-
-                    setTimeout(() => {
-                        document.body.removeChild(message);
-                    }, 3000);
-                });
-            });
-
-            chatListItems.forEach(item => {
-                item.addEventListener('click', (e) => {
-                    const user = e.target.getAttribute('data-chat');
-                    chatUserName.textContent = user;
-
-                    // Sample chat messages
-                    chatBody.innerHTML = `
-                        <p><strong>${user}</strong>: Hello!</p>
-                        <p><strong>You</strong>: Hi there!</p>
-                    `;
-                });
-            });
-
-            sendMessageButton.addEventListener('click', () => {
-                const message = messageInput.value.trim();
-                if (message) {
-                    chatBody.innerHTML += `<p><strong>You</strong>: ${message}</p>`;
-                    messageInput.value = '';
-                }
-            });
-
-            window.addEventListener('hashchange', () => {
-                const hash = window.location.hash.substring(1);
-                showSection(hash);
-            });
-
-            if (window.location.hash) {
-                showSection(window.location.hash.substring(1));
-            }
-        });
     </script>
 </body>
 </html>
