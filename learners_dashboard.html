@@ -26,10 +26,12 @@
             height: 100vh;
             transition: width 0.3s;
             z-index: 1000;
+            display: flex;
+            flex-direction: column;
         }
 
         .sidebar.collapsed {
-            width: 70px;
+            width: 80px;
             overflow: hidden;
         }
 
@@ -49,12 +51,14 @@
 
         .sidebar-header h2.collapsed {
             opacity: 0;
+            padding-left: 10px;
         }
 
         .sidebar-menu {
             list-style: none;
             padding: 0;
             margin: 20px 0;
+            flex: 1;
         }
 
         .sidebar-menu li {
@@ -76,17 +80,35 @@
             margin-right: 10px;
         }
 
+        .sidebar-menu li a span {
+            display: inline;
+        }
+
+        .sidebar.collapsed .sidebar-menu li a span {
+            display: none;
+        }
+
         .sidebar-menu li a.active, .sidebar-menu li a:hover {
             color: #2c3e50;
             background-color: #1abc9c;
         }
 
         .sidebar-footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
+            margin-top: auto;
             display: flex;
             justify-content: space-between;
+        }
+
+        .content {
+            margin-left: 320px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            transition: margin-left 0.3s, width 0.3s;
+        }
+
+        .content.collapsed {
+            margin-left: 120px;
+            width: calc(100% - 70px);
         }
 
         .toggle-btn, .toggle-btn-back {
@@ -97,30 +119,19 @@
             padding: 10px;
             border: none;
             border-radius: 5px;
-            position: fixed;
+            position: fixed; /* Fixed positioning */
             top: 20px;
             z-index: 1100;
+            transition: right 0.3s; /* Smooth transition */
         }
 
         .toggle-btn {
-            left: 20px;
+            right: 20px; /* Adjust as needed */
         }
 
         .toggle-btn-back {
-            left: 70px;
+            right: 80px; /* Adjust as needed */
             display: none;
-        }
-
-        .content {
-            margin-left: 350px;
-            padding: 20px;
-            width: calc(100% - 250px);
-            transition: margin-left 0.3s, width 0.3s;
-        }
-
-        .content.collapsed {
-            margin-left: 200px;
-            width: calc(100% - 70px);
         }
 
         section {
@@ -266,7 +277,7 @@
 <body>
     <div class="sidebar">
         <div class="sidebar-header">
-            <h2 class="title-text">Learners Dashboard</h2>
+            <h2 class="title-text">Learner</h2>
         </div>
         <ul class="sidebar-menu">
             <li><a href="#courses" class="active"><i class="fas fa-book"></i><span> My Courses</span></a></li>
@@ -280,8 +291,6 @@
             <a href="#support"><i class="fas fa-life-ring"></i><span> Support</span></a>
         </div>
     </div>
-    <button class="toggle-btn"><i class="fas fa-bars"></i></button>
-    <button class="toggle-btn-back"><i class="fas fa-times"></i></button>
     <div class="content">
         <section id="courses" class="active">
             <h2>My Courses</h2>
@@ -336,6 +345,8 @@
             <p>Settings options here</p>
         </section>
     </div>
+    <button class="toggle-btn"><i class="fas fa-chevron-left"></i></button>
+    <button class="toggle-btn-back"><i class="fas fa-times"></i></button>
     <div class="support-icon">
         <i class="fas fa-life-ring"></i>
     </div>
@@ -371,7 +382,7 @@
             sidebarLinks.forEach(link => {
                 link.addEventListener('click', (e) => {
                     e.preventDefault();
-                    const targetId = e.target.getAttribute('href').substring(1);
+                    const targetId = e.currentTarget.getAttribute('href').substring(1);
                     showSection(targetId);
                 });
             });
