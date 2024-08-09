@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>eLEARNING - eLearning HTML Template</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="img/favicon.ico" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href="lib/animate/animate.min.css" rel="stylesheet">
+    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+    <!-- Spinner End -->
+
+<!-- Navbar Start -->
+    <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5" style="color: black;">
+            <h2 class="m-0 text-primary">YanBU Hub</h2>
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="index.html" class="nav-item nav-link active">Home</a>
+                <a href="about.html" class="nav-item nav-link">About</a>
+                <a href="courses.html" class="nav-item nav-link">Courses</a>
+                <a href="#" class="btn btn-primary py-4 px-lg-5 d-none d-lg-block" data-bs-toggle="modal" data-bs-target="#loginModal">Join Now<i class="fa fa-arrow-right ms-3"></i></a>
+                <a class="nav-item nav-link" href="contact.html">Contact</a>
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="loginModalLabel">Sign In</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="login-form" style="padding: 30px;">
+                        <form>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter your password">
+                            </div>
+                            <div class="d-flex justify-content-between mb-4">
+                                <a href="#" class="text-primary">Forgot Password?</a>
+                                <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#signupModal" data-bs-dismiss="modal">Sign Up</a>
+                            </div>
+                            <button type="submit" class="btn btn-primary w-100 mb-3">Sign In</button>
+                            <div class="divider">
+                                <p>Or sign in with:</p>
+                            </div>
+                            <button type="button" class="btn btn-google w-100 mb-3" style="background-color: black; color: white;">
+                                <i class="fab fa-google icon"></i> Continue with Google
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sign Up Modal -->
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="signupModalLabel">Sign Up</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="padding: 30px;">
+                    <form>
+                        <div class="mb-3">
+                            <label for="username" class="form-label">Username</label>
+                            <input type="text" class="form-control" id="username" placeholder="Choose a username">
+                        </div>
+                        <div class="mb-3">
+                            <label for="email-signup" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email-signup" placeholder="Enter your email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="password-signup" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="password-signup" placeholder="Create a password">
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirm-password" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="confirm-password" placeholder="Confirm your password">
+                        </div>
+                        <div class="d-flex justify-content-between mb-4">
+                            <a href="#" class="text-primary">Already have an account?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mb-3">Sign Up</button>
+                        <button type="button" class="btn btn-google w-100 mb-3" style="background-color: black; color: white;">
+                            <i class="fab fa-google icon"></i> Continue with Google
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel Start -->
+    <div class="container-fluid p-0 mb-5">
+        <div class="owl-carousel header-carousel position-relative">
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/carousel-1.jpg" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Empowering Creators</h5>
+                                <h1 class="display-3 text-white animated slideInDown">Transform Your Content Creation Journey</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Join Yanbu to access resources, workshops, and support designed to elevate your content creation skills and career. Connect with fellow creators and explore new opportunities.</p>
+                                <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Explore Our Offerings</a>
+                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Join Yanbu Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="owl-carousel-item position-relative">
+                <img class="img-fluid" src="img/carousel-2.jpg" alt="">
+                <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center" style="background: rgba(24, 29, 56, .7);">
+                    <div class="container">
+                        <div class="row justify-content-start">
+                            <div class="col-sm-10 col-lg-8">
+                                <h5 class="text-primary text-uppercase mb-3 animated slideInDown">Expert Guidance</h5>
+                                <h1 class="display-3 text-white animated slideInDown">Connect with Industry Leaders</h1>
+                                <p class="fs-5 text-white mb-4 pb-2">Benefit from personalized 1:1 sessions and comprehensive digital products crafted to support your growth as a content creator. Take advantage of expert insights and hands-on support.</p>
+                                <a href="#" class="btn btn-primary py-md-3 px-md-5 me-3 animated slideInLeft">Discover Sessions</a>
+                                <a href="#" class="btn btn-light py-md-3 px-md-5 animated slideInRight">Explore Digital Products</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Carousel End -->
+
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-users text-primary mb-4"></i>
+                            <h5 class="mb-3">Expert Sessions</h5>
+                            <p>Engage with seasoned professionals through personalized 1:1 sessions designed to provide tailored guidance and support for your content creation journey.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-laptop text-primary mb-4"></i>
+                            <h5 class="mb-3">Digital Products</h5>
+                            <p>Access a range of expertly crafted digital products, including frameworks and curricula, designed to enhance your skills and streamline your content creation process.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-handshake text-primary mb-4"></i>
+                            <h5 class="mb-3">Networking Opportunities</h5>
+                            <p>Connect with a vibrant community of fellow creators and industry experts. Explore collaboration opportunities and build valuable professional relationships.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.7s">
+                    <div class="service-item text-center pt-3">
+                        <div class="p-4">
+                            <i class="fa fa-3x fa-chalkboard-teacher text-primary mb-4"></i>
+                            <h5 class="mb-3">Comprehensive Support</h5>
+                            <p>Receive ongoing support and feedback through live sessions, group discussions, and direct communication channels to address your unique challenges and goals.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+
+    <!-- About Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="row g-5">
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s" style="min-height: 400px;">
+                    <div class="position-relative h-100">
+                        <img class="img-fluid position-absolute w-100 h-100" src="img/about.jpg" alt="" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <h6 class="section-title bg-white text-start text-primary pe-3">About Us</h6>
+                    <h1 class="mb-4">Welcome to Yanbu Hub</h1>
+                    <p class="mb-4">Hey there, fellow creators! 🎨✨ Welcome to Yanbu, where we all share the same dream: building sustainable careers as content creators. 🚀 Right here, you'll find all the support, resources, and amazing opportunities to either kick-start or totally transform your content creation journey. 🌟</p>
+                    <p class="mb-4">As the first-ever cohort to join this awesome platform, we're super excited to have you help shape the experience for future cohorts! Let's make this journey unforgettable. Let's go! 🚀👏</p>
+                    <div class="row gy-2 gx-4 mb-4">
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>1:1 Sessions</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Digital Products</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Live Sessions</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Group Conversations</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Creative Core Curriculum</p>
+                        </div>
+                        <div class="col-sm-6">
+                            <p class="mb-0"><i class="fa fa-arrow-right text-primary me-2"></i>Content Creator Framework</p>
+                        </div>
+                    </div>
+                    <a class="btn btn-primary py-3 px-5 mt-2" href="">Read More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- About End -->
+
+
+
+
+    <!-- Courses Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Products</h6>
+                <h1 class="mb-5">Featured Offerings</h1>
+            </div>
+            <div class="row g-4 justify-content-center">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="img/course-1.jpg" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h3 class="mb-0">Free</h3>
+                            <h5 class="mb-4">Crafting Your Social Media</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Yanbu Team</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-clock text-primary me-2"></i>45 min</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="img/course-2.jpg" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h3 class="mb-0">Free</h3>
+                            <h5 class="mb-4">Yanbu Hub Kick-off Session</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Yanbu Team</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-clock text-primary me-2"></i>45 min</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="course-item bg-light">
+                        <div class="position-relative overflow-hidden">
+                            <img class="img-fluid" src="img/course-3.jpg" alt="">
+                            <div class="w-100 d-flex justify-content-center position-absolute bottom-0 start-0 mb-4">
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3 border-end" style="border-radius: 30px 0 0 30px;">Read More</a>
+                                <a href="#" class="flex-shrink-0 btn btn-sm btn-primary px-3" style="border-radius: 0 30px 30px 0;">Join Now</a>
+                            </div>
+                        </div>
+                        <div class="text-center p-4 pb-0">
+                            <h3 class="mb-0">Free</h3>
+                            <h5 class="mb-4">The Content Creator Framework</h5>
+                        </div>
+                        <div class="d-flex border-top">
+                            <small class="flex-fill text-center border-end py-2"><i class="fa fa-user-tie text-primary me-2"></i>Yanbu Team</small>
+                            <small class="flex-fill text-center py-2"><i class="fa fa-clock text-primary me-2"></i>45 min</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Courses End -->
+
+    <!-- Feed Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center wow fadeInUp" data-wow-delay="0.1s">
+                <h6 class="section-title bg-white text-center text-primary px-3">Latest Updates</h6>
+                <h1 class="mb-5">Community Feed</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-12 wow fadeInUp" data-wow-delay="0.1s">
+                    <!-- Feed Item 1 -->
+                    <div class="feed-item bg-light p-4 mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Nnadozie Ebere</h5>
+                                <small class="text-muted">8mo ago</small>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">Baseline Survey</h6>
+                        <p class="feed-text">Hey Creators! 🌟 Take our quick survey to help us tailor YanbuHub just for you! 🛠️ Remember, all our engagements will be in English., for now. Let's make this journey epic together 🚀! <a href="#">Link to survey</a></p>
+                        <button class="btn btn-primary btn-sm read-more-btn" onclick="toggleContent(this)">Read More</button>
+                    </div>
+                    <!-- Feed Item 2 -->
+                    <div class="feed-item bg-light p-4 mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Nnadozie Ebere</h5>
+                                <small class="text-muted">5mo ago</small>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">YanbuHub | Check Out What You've Helped Us Build</h6>
+                        <p class="feed-text">Hello everyone, Thank you very much for joining us during the first two months of this test. We are deeply grateful to everyone who has booked personal sessions and attended the live ones. We've learned a great deal about supporting creators within an African ecosystem. Here are our key insights: Content creation is challenging, and achieving stability in creative roles, such as working for agencies or as ghostwriters for brands, better positions individuals to launch independent careers. With these findings, we've decided to dedicate the final month of this testing phase to skills development and support. We are developing actual products to aid anyone in thriving in a creative environment, whether as a contributor or while building a following, independently or as part of a team. We will also offer consultancy services to help people secure roles and connect them with opportunities. Being part of this hub should guide anyone with a keen interest toward a fruitful journey as a content creator, independently or as a contributor. On that note, we have redesigned our final test, which will launch this March. In the meantime, we're eager to engage with those already in roles or looking to enter the content creation space. Take advantage of live sessions, group conversations, and DMs to ask questions and share challenges you're facing in the workplace, and we will ensure that we can help you succeed. Thank you very much for your continued support. We look forward to providing more assistance and growing the hub together. Thank you.</p>
+                        <button class="btn btn-primary btn-sm read-more-btn" onclick="toggleContent(this)">Read More</button>
+                    </div>
+                    <!-- Feed Item 3 -->
+                    <div class="feed-item bg-light p-4 mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Nnadozie Ebere</h5>
+                                <small class="text-muted">6mo ago</small>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">Our First Session For 2024 Is Live</h6>
+                        <p class="feed-text">Check out available resources</p>
+                        <button class="btn btn-primary btn-sm read-more-btn" onclick="toggleContent(this)">Read More</button>
+                    </div>
+                    <!-- Feed Item 4 -->
+                    <div class="feed-item bg-light p-4 mb-4">
+                        <div class="d-flex align-items-center mb-3">
+                            <div class="me-3">
+                                <i class="fas fa-user-circle fa-3x"></i>
+                            </div>
+                            <div>
+                                <h5 class="mb-0">Nnadozie Ebere</h5>
+                                <small class="text-muted">8mo ago</small>
+                            </div>
+                        </div>
+                        <h6 class="fw-bold">YANBU HUB HOUSEKEEPING</h6>
+                        <p class="feed-text">Hello YANBU Creators! 🎨🚀 The journey to crafting the future starts right now! Here's a quick run-through of how we're going to keep things lively and engaging during your time here. 🌟 We've set up three awesome WhatsApp groups, fully integrated with our portal. If you haven't already, we encourage you to join all of them. Here's what each group is all about: YANBU | Cohort-1 Updates: This is your go-to spot for all the info about the next two months, plus a daily dose of super useful content and resources. 📆  <a href="#">link to join</a> YANBU | Cohort-1 Creator News: Filtered news and updates about the buzzing world of social media platforms. 🌍 <a href="#">link to join</a> YANBU | Creators’ Hangout: Consider this our virtual break room. Share your wins, talk about your day, and dive into the latest internet buzz. 🎉 <a href="#">Link to Join</a> YANBU | Creators Collab: Here's where you'll find exciting collaboration opportunities with other creators and gigs within our client network. 🤝 <a href="#">Link to Join</a> Now, let's break down our content schedule to keep you inspired and informed:  Monday Motivation: Real, grounded motivation to kickstart your week - Monday mornings & evenings. 💪  Tuesday Tips: Handpicked resources from the vast ocean of the internet - Tuesday mornings and evenings. 📚  Wednesday Polls: Interactive diagnostic prompts to tailor upcoming resources - Wednesday mornings. 📊  Wednesday Mid-Week Recap: A quick summary of our week so far - every Wednesday evening. 🔄  Thursday Thrills: A deep dive into trending topics in our break room - let's geek out! 🌐  Friday Critique: Share and constructively critique various content like ads, movies, or write-ups - Friday evenings. 🎬  Friday Weekly Recap: Wrapping up our week - every Friday evening. 📅  Saturday & Sunday Office Hours: Book 30-minute slots for one-on-one catchups with the community manager. 🕒  Biweekly Live Sessions: 90-minute content clinics to break down concepts, with recordings uploaded for later viewing. 📹 We're beyond excited to start this journey with you! Let's make the most of it and create something incredible together! 🌈🚀</p>
+                        <button class="btn btn-primary btn-sm read-more-btn" onclick="toggleContent(this)">Read More</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Feed End -->
+
+
+
+    <!-- Testimonial Start -->
+    <div class="container-xxl py-5 wow fadeInUp" data-wow-delay="0.1s">
+        <div class="container">
+            <div class="text-center">
+                <h6 class="section-title bg-white text-center text-primary px-3">Testimonial</h6>
+                <h1 class="mb-5">Our Members Say!</h1>
+            </div>
+            <div class="owl-carousel testimonial-carousel position-relative">
+                <div class="testimonial-item text-center">
+                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-1.jpg" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">Client Name</h5>
+                    <p>Profession</p>
+                    <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-2.jpg" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">Client Name</h5>
+                    <p>Profession</p>
+                    <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-3.jpg" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">Client Name</h5>
+                    <p>Profession</p>
+                    <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    </div>
+                </div>
+                <div class="testimonial-item text-center">
+                    <img class="border rounded-circle p-2 mx-auto mb-3" src="img/testimonial-4.jpg" style="width: 80px; height: 80px;">
+                    <h5 class="mb-0">Client Name</h5>
+                    <p>Profession</p>
+                    <div class="testimonial-text bg-light text-center p-4">
+                    <p class="mb-0">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit diam amet diam et eos. Clita erat ipsum et lorem et sit.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Testimonial End -->
+        
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Quick Link</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Privacy Policy</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs & Help</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Contact</h4>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Gallery</h4>
+                    <div class="row g-2 pt-2">
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-2.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-3.jpg" alt="">
+                        </div>
+                        <div class="col-4">
+                            <img class="img-fluid bg-light p-1" src="img/course-1.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-3">Newsletter</h4>
+                    <p>Dolor amet sit justo amet elitr clita ipsum elitr est.</p>
+                    <div class="position-relative mx-auto" style="max-width: 400px;">
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="copyright">
+                <div class="row">
+                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                        &copy; <a class="border-bottom" href="#">Yanbu Hub</a>, All Right Reserved.
+                    </div>
+                    <div class="col-md-6 text-center text-md-end">
+                        <div class="footer-menu">
+                            <a href="">Home</a>
+                            <a href="">Cookies</a>
+                            <a href="">Help</a>
+                            <a href="">FQAs</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/wow/wow.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script>
+        function toggleContent(button) {
+            const feedItem = button.closest('.feed-item');
+            const content = feedItem.querySelector('.feed-text');
+
+            if (button.textContent === 'Read More') {
+                content.style.maxHeight = 'none';
+                button.textContent = 'Show Less';
+            } else {
+                content.style.maxHeight = '50px'; // adjust this to fit the visible portion
+                button.textContent = 'Read More';
+            }
+        }
+        // Load modal content from external file
+        $(function() {
+            $("#loginModal").load("modal.html");
+        });
+        // Smooth transition on modal appearance
+        document.querySelectorAll('.modal').forEach((modal) => {
+            modal.addEventListener('show.bs.modal', function () {
+                this.style.display = 'block';
+                setTimeout(() => {
+                    this.classList.add('show');
+                }, 10);
+            });
+
+            modal.addEventListener('hide.bs.modal', function () {
+                this.classList.remove('show');
+                setTimeout(() => {
+                    this.style.display = 'none';
+                }, 300);
+            });
+        });
+
+        // Button ripple effect
+        document.querySelectorAll('.custom-btn').forEach((btn) => {
+            btn.addEventListener('click', function (e) {
+                const x = e.clientX - e.target.offsetLeft;
+                const y = e.clientY - e.target.offsetTop;
+
+                const ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                ripple.style.left = `${x}px`;
+                ripple.style.top = `${y}px`;
+
+                this.appendChild(ripple);
+
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+
+    </script>
+
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

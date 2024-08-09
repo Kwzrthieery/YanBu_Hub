@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #FB773C;
+            --dark: #1A4870;
+            --light: #FFFFFF;
+            --accent: #5B99C2;
+            --border-radius: 10px;
+            --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            min-height: 100vh;
+            transition: margin-left 0.3s;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 20px;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            box-shadow: var(--box-shadow);
+            transition: width 0.3s;
+        }
+
+        .sidebar.collapsed {
+            width: 80px;
+        }
+
+        .sidebar-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 24px;
+            color: var(--primary);
+            display: inline-block;
+            transition: opacity 0.3s;
+        }
+
+        .sidebar-header h2.collapsed {
+            opacity: 0;
+        }
+
+        .sidebar-header .toggle-btn {
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--light);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar-menu li {
+            margin: 20px 0;
+        }
+
+        .sidebar-menu li a {
+            color: var(--light);
+            text-decoration: none;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .sidebar-menu li a .icon {
+            margin-right: 10px;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+            width: calc(100% - 250px);
+            overflow: auto;
+            transition: margin-left 0.3s, width 0.3s;
+        }
+
+        .content.collapsed {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+        }
+
+        section {
+            margin-bottom: 40px;
+        }
+
+        section h2 {
+            font-size: 28px;
+            color: var(--dark);
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        form input[type="text"],
+        form input[type="file"],
+        form textarea {
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: var(--border-radius);
+            font-size: 16px;
+            box-shadow: var(--box-shadow);
+        }
+
+        form button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: var(--primary);
+            color: var(--light);
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: var(--box-shadow);
+        }
+
+        form button:hover {
+            background-color: #e75a2e;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Success message style */
+        .success-message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            z-index: 1000;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards;
+        }
+
+        /* Fade-in animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        /* Card styles */
+        .card {
+            background-color: var(--light);
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .card h3 {
+            margin: 0;
+            font-size: 20px;
+            color: var(--dark);
+        }
+
+        .card p {
+            margin: 10px 0 0;
+            color: var(--accent);
+        }
+
+        /* Registered users table */
+        .users-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .users-table th, .users-table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        .users-table th {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        /* WhatsApp-like chat structure */
+        .chat-container {
+            display: flex;
+            gap: 20px;
+        }
+
+        .chat-list {
+            width: 30%;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            overflow-y: auto;
+            height: 500px;
+            background-color: var(--light);
+            box-shadow: var(--box-shadow);
+        }
+
+        .chat-list ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .chat-list li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            cursor: pointer;
+        }
+
+        .chat-list li:hover {
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .chat-details {
+            width: 70%;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            background-color: var(--light);
+            box-shadow: var(--box-shadow);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chat-header {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            background-color: var(--primary);
+            color: var(--light);
+        }
+
+        .chat-body {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+        }
+
+        .chat-footer {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #f9f9f9;
+        }
+
+        .chat-footer input[type="text"] {
+            width: calc(100% - 60px);
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+        }
+
+        .chat-footer button {
+            padding: 10px;
+            border: none;
+            border-radius: var(--border-radius);
+            background-color: var(--primary);
+            color: var(--light);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .chat-footer button:hover {
+            background-color: #e75a2e;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="title">Admin Dashboard</h2>
+            <span class="toggle-btn" onclick="toggleSidebar()"><i class="fas fa-bars"></i></span>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#upload-courses"><i class="fas fa-upload icon"></i><span class="menu-text">Upload Courses</span></a></li>
+            <li><a href="#registered-learners"><i class="fas fa-users icon"></i><span class="menu-text">Registered Learners</span></a></li>
+            <li><a href="#post-feed"><i class="fas fa-pen icon"></i><span class="menu-text">Post Feed</span></a></li>
+            <li><a href="#view-messages"><i class="fas fa-comments icon"></i><span class="menu-text">View Messages</span></a></li>
+            <li><a href="#start-sessions"><i class="fas fa-video icon"></i><span class="menu-text">Start Sessions</span></a></li>
+            <li><a href="#logout"><i class="fas fa-sign-out-alt icon"></i><span class="menu-text">Logout</span></a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <section id="upload-courses">
+            <h2>Upload Courses</h2>
+            <div class="card">
+                <h3>Existing Courses</h3>
+                <div class="card">
+                    <h3>Course Title 1</h3>
+                    <p>Description of course 1</p>
+                </div>
+                <div class="card">
+                    <h3>Course Title 2</h3>
+                    <p>Description of course 2</p>
+                </div>
+            </div>
+            <form>
+                <h3>Add New Course</h3>
+                <input type="text" placeholder="Course Title">
+                <input type="file">
+                <button type="submit">Upload</button>
+            </form>
+        </section>
+        <section id="registered-learners">
+            <h2>Registered Learners</h2>
+            <p>Total Registered Users: <span id="user-count">100</span></p>
+            <table class="users-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Registration Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>John Doe</td>
+                        <td>john.doe@example.com</td>
+                        <td>2024-08-01</td>
+                    </tr>
+                    <tr>
+                        <td>Jane Smith</td>
+                        <td>jane.smith@example.com</td>
+                        <td>2024-08-02</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <section id="post-feed">
+            <h2>Post Feed</h2>
+            <form>
+                <textarea placeholder="What's on your mind?"></textarea>
+                <button type="submit">Post</button>
+            </form>
+        </section>
+        <section id="view-messages">
+            <h2>View Messages</h2>
+            <div class="chat-container">
+                <div class="chat-list">
+                    <ul>
+                        <li data-chat="user1">User 1</li>
+                        <li data-chat="user2">User 2</li>
+                    </ul>
+                </div>
+                <div class="chat-details">
+                    <div class="chat-header">
+                        <span id="chat-user-name">Select a user to start chat</span>
+                    </div>
+                    <div class="chat-body" id="chat-body">
+                        <!-- Chat messages will be displayed here -->
+                    </div>
+                    <div class="chat-footer">
+                        <input type="text" id="message-input" placeholder="Type a message">
+                        <button id="send-message">Send</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="start-sessions">
+            <h2>Start Sessions</h2>
+            <!-- Session Management Tools -->
+        </section>
+        <section id="logout">
+            <h2>Logout</h2>
+            <!-- Logout functionality -->
+        </section>
+    </div>
+    <script>
+        function toggleSidebar() {
+            const sidebar = document.querySelector('.sidebar');
+            const content = document.querySelector('.content');
+            sidebar.classList.toggle('collapsed');
+            content.classList.toggle('collapsed');
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const sidebarLinks = document.querySelectorAll('.sidebar-menu li a');
+            const sections = document.querySelectorAll('section');
+            const chatListItems = document.querySelectorAll('.chat-list li');
+            const chatUserName = document.getElementById('chat-user-name');
+            const chatBody = document.getElementById('chat-body');
+            const messageInput = document.getElementById('message-input');
+            const sendMessageButton = document.getElementById('send-message');
+
+            const showSection = (hash) => {
+                sections.forEach(section => {
+                    section.style.display = section.id === hash ? 'block' : 'none';
+                });
+            };
+
+            showSection('upload-courses'); // Show default section on page load
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const hash = e.target.getAttribute('href').substring(1);
+                    showSection(hash);
+                    history.pushState(null, null, `#${hash}`);
+                });
+            });
+
+            document.querySelectorAll('form').forEach(form => {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const formData = new FormData(form);
+                    console.log('Form submitted', formData);
+
+                    const message = document.createElement('div');
+                    message.className = 'success-message';
+                    message.innerText = 'Form submitted successfully!';
+                    document.body.appendChild(message);
+
+                    setTimeout(() => {
+                        document.body.removeChild(message);
+                    }, 3000);
+                });
+            });
+
+            chatListItems.forEach(item => {
+                item.addEventListener('click', (e) => {
+                    const user = e.target.getAttribute('data-chat');
+                    chatUserName.textContent = user;
+
+                    // Sample chat messages
+                    chatBody.innerHTML = `
+                        <p><strong>${user}</strong>: Hello!</p>
+                        <p><strong>You</strong>: Hi there!</p>
+                    `;
+                });
+            });
+
+            sendMessageButton.addEventListener('click', () => {
+                const message = messageInput.value.trim();
+                if (message) {
+                    chatBody.innerHTML += `<p><strong>You</strong>: ${message}</p>`;
+                    messageInput.value = '';
+                }
+            });
+
+            window.addEventListener('hashchange', () => {
+                const hash = window.location.hash.substring(1);
+                showSection(hash);
+            });
+
+            if (window.location.hash) {
+                showSection(window.location.hash.substring(1));
+            }
+        });
+    </script>
+</body>
+</html>
